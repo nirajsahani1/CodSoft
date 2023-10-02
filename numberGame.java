@@ -23,12 +23,13 @@ public class numberGame {
         }
         return false;
     }
-    public static void startGame(int countRound){
+    public static int startGame(int countRound , int user){
         Scanner sc =new Scanner(System.in);
-        int userWin=0;
+        int userWin=user;
         Random random=new Random();   //create instance of random calss
 
-        int rndom= random.nextInt(101);    //range of random is 0 to 100  //     System.out.println("Number genereted by System is : "+rndom);
+        int rndom= random.nextInt(101);    //range of random is 0 to 100  //
+        System.out.println("Number genereted by System is : "+rndom);
         System.out.println("You have Five change :-");
         int g=5,s=0,noOftime=0;
         while (g>0){
@@ -59,6 +60,7 @@ public class numberGame {
          int diff=countRound-userWin;
         System.out.println("Number of rounds : "+countRound+"\nNumber of round User Win : "+userWin+"\nNumber of round System win :"+diff);
         System.out.println();
+        return userWin;
     }
     public static void main(String[] args) {
 
@@ -69,13 +71,13 @@ public class numberGame {
         String str=sc.next();
         str=str.toLowerCase(Locale.ROOT);
         boolean flag=true;
-        int countRound=0;
+        int countRound=0,user=0;
         while (flag){
            switch (str){
             case "yes":
                   countRound++;
                   numberGame obj=new numberGame();
-                  obj.startGame(countRound);
+                 user= obj.startGame(countRound,user);   //keeping track that user win
                   System.out.println("Play again yes/no");
                   String st=sc.next();
                   if(st.toLowerCase().equals("no")){
